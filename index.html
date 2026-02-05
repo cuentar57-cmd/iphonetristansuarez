@@ -349,6 +349,17 @@ h2 {
   100% { background-position: 100% 50%; }
 }
 
+.ver-todos{
+  display:block;
+  margin:20px auto;
+  padding:10px 22px;
+  border-radius:20px;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+
 .buscador-container{
   display:flex;
   justify-content:center;
@@ -415,6 +426,31 @@ h2 {
   position: relative;
 }
 
+.mensaje-stock{
+  text-align:center;
+  font-size:20px;
+  font-weight:800;
+  margin:35px 0;
+  color:#ff3b3b;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  animation: fadeIn 0.4s ease;
+  text-shadow:
+    0 0 8px rgba(255,59,59,.8),
+    0 0 16px rgba(255,59,59,.6);
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(6px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 
 
 
@@ -465,75 +501,128 @@ h2 {
   >
 </div>
 
+ <div class="modelos">
 
- 
-  <div class="modelos">
-    <div class="modelo" onclick="mostrarSellados(this)">
-      <img src="https://i.postimg.cc/PqzbwZHY/i_Phone_Device_List_Smart_Website_1280_x_853_i_Phone_17_Pro_1_c26420e4fa.webp">
-      <span>Sellados</span>
-    </div>
-
-    <div class="separador"></div>
-
-
-    <div class="modelo" onclick="filtrarModelo('11',this)">
-      <img src="https://i.postimg.cc/YCzJMVs6/IMG-1356.webp">
-      <span>iPhone 11</span>
-    </div>
-
-    <div class="separador"></div>
-
-    <div class="modelo" onclick="filtrarModelo('12',this)">
-      <img src="https://i.postimg.cc/9MFt2M9F/1_org_zoom.webp">
-      <span>iPhone 12</span>
-    </div>
-
-    <div class="separador"></div>
-
-    <div class="modelo" onclick="filtrarModelo('13',this)">
-      <img src="https://i.postimg.cc/90LZXJJ8/iphone_13_PNG27.png">
-      <span>iPhone 13</span>
-    </div>
-
-    <div class="separador"></div>
-
-    <div class="modelo" onclick="filtrarModelo('13-pro',this)">
-      <img src="https://i.postimg.cc/2ynYhx9D/Apple-i-Phone-13-Pro-Graphite-1.webp">
-      <span>iPhone 13 Pro</span>
-    </div>
-
-    <div class="separador"></div>
-
-    <div class="modelo" onclick="filtrarModelo('14',this)">
-      <img src="https://i.postimg.cc/tTt7Cthh/0bb0c6a5_603e_4338_8527_1fda8f2df096.png">
-      <span>iPhone 14</span>
-    </div>
-
-    <div class="separador"></div>
-
-    <div class="modelo" onclick="filtrarModelo('14-pro-max',this)">
-      <img src="https://i.postimg.cc/hvBRVxpn/fee4af78-110f-467c-86d2-6d6f27ba1afe-8422413b3b9eb231cea3f43d11a5a5c4.webp">
-      <span>iPhone 14 Pro Max</span>
-    </div>
-
-
-    <div class="separador"></div>
-
-    <div class="modelo" onclick="filtrarModelo('16-pro',this)">
-      <img src="https://i.postimg.cc/kMj8Vv3Y/07_11_2024_03_11_36_iphone16promax1.png">
-      <span>iPhone 16 Pro</span>
-    </div>
-
-
-
-  <div style="display:flex; justify-content:center; margin:15px 0;">
-    <button class="ver-todos" onclick="verTodos()">
-      Ver todos
-    </button>
+  <div class="modelo" onclick="mostrarAccesorios(this)">
+    <img src="https://i.postimg.cc/J075NT2m/Gemini-Generated-Image-uoeqv5uoeqv5uoeq.png">
+    <span>Accesorios</span>
   </div>
-</div>
-</div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="mostrarSellados(this)">
+    <img src="https://i.postimg.cc/PqzbwZHY/i_Phone_Device_List_Smart_Website_1280_x_853_i_Phone_17_Pro_1_c26420e4fa.webp">
+    <span>Sellados</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('11',this)">
+    <img src="https://i.postimg.cc/YCzJMVs6/IMG-1356.webp">
+    <span>iPhone 11</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('12',this)">
+    <img src="https://i.postimg.cc/9MFt2M9F/1_org_zoom.webp">
+    <span>iPhone 12</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('13',this)">
+    <img src="https://i.postimg.cc/90LZXJJ8/iphone_13_PNG27.png">
+    <span>iPhone 13</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('13-pro',this)">
+    <img src="https://i.postimg.cc/2ynYhx9D/Apple-i-Phone-13-Pro-Graphite-1.webp">
+    <span>iPhone 13 Pro</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('13-pro-max',this)">
+    <img src="https://i.postimg.cc/jSPVkXXw/D-Q-NP-865602-MLA94367446475-102025-O.webp">
+    <span>iPhone 13 Pro Max</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('14',this)">
+    <img src="https://i.postimg.cc/tTt7Cthh/0bb0c6a5_603e_4338_8527_1fda8f2df096.png">
+    <span>iPhone 14</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('14-pro',this)">
+    <img src="https://i.postimg.cc/hvBRVxpn/fee4af78-110f-467c-86d2-6d6f27ba1afe.webp">
+    <span>iPhone 14 Pro</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('14-pro-max',this)">
+    <img src="https://i.postimg.cc/63wBhSxJ/celular-apple-iphone-14-pro-128gb-recondicionado-155300-550x550.png">
+    <span>iPhone 14 Pro Max</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('15',this)">
+    <img src="https://i.postimg.cc/tTyvxpx9/iphone15.webp">
+    <span>iPhone 15</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('15-pro',this)">
+    <img src="https://i.postimg.cc/3JTMvmXY/fa213372_4456_489b_a2b3_9293592ddf43.png">
+    <span>iPhone 15 Pro</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('15-pro-max',this)">
+    <img src="https://i.postimg.cc/XvT106xd/iphone_15_pro_max_blue_titanium.webp">
+    <span>iPhone 15 Pro Max</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('16',this)">
+    <img src="https://i.postimg.cc/dtHBYKVP/d3e7282f_0020_4e25_ad70_cd833fbb0056.webp">
+    <span>iPhone 16</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('16-pro',this)">
+    <img src="https://i.postimg.cc/y8WSWjDX/IMG_2084.webp">
+    <span>iPhone 16 Pro</span>
+  </div>
+
+  <div class="separador"></div>
+
+  <div class="modelo" onclick="filtrarModelo('16-pro-max',this)">
+    <img src="https://i.postimg.cc/Y2JWKwN5/IMG_9112.png">
+    <span>iPhone 16 Pro Max</span>
+  </div>
+
+</div> <!-- CIERRA .modelos -->
+
+<button class="ver-todos" onclick="verTodos()">
+  Ver todos
+</button>
+
+<div id="mensaje-stock" class="mensaje-stock" style="display:none;"></div>
+
 <!-- USADOS -->
+
 
 <div class="card usado" data-modelo="11">
   <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
@@ -624,10 +713,78 @@ h2 {
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Fundas de silicona <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$10.0000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Fundas Magnéticas <span class="tag accesorioss-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$12.0000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Fundas Transparentes <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$6.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Transparente MagSafe <span class="tag accesorioss-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$9.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Templados Antiespia <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$9.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Templados Reforzado <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$6.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Cable USB APPLE <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$10.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Cable tipo C a Lightning <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$12.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Adaptador 5W <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$15.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card accesorios" data-modelo="accesorios">
+  <div class="titulo">Adaptador 20W <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="detalle"></div>
+  <div class="precio-ars">$25.000</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
 
 
-
-	
+</div>
 </div>
 </section>
 
@@ -650,8 +807,10 @@ h2 {
 </div>
 
 <script>
+
 const usados = document.querySelectorAll(".usado");
 const sellados = document.querySelectorAll(".sellado");
+const accesorios = document.querySelectorAll(".accesorios");
 const zonagamer = document.querySelectorAll('[data-modelo="zonagamer"]');
 const ps5 = document.querySelectorAll(".ps5");
 const smart = document.querySelectorAll(".smart");
@@ -665,7 +824,7 @@ const airtag = document.querySelectorAll(".airtag");
 const parlantejbl = document.querySelectorAll(".parlantejbl");
 const modelos = document.querySelectorAll(".modelo");
 
-
+const mensajeStock = document.getElementById("mensaje-stock");
 
 const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
@@ -679,14 +838,19 @@ function buscarProductos(){
     const contenido = card.innerText.toLowerCase();
     card.style.display = contenido.includes(texto) ? "block" : "none";
   });
+
+  mensajeStock.style.display = "none";
 }
+
 
 menuBtn.addEventListener("click", () => {
   menuBtnContainer.classList.toggle("active");
 });
 
 document.addEventListener("click", e => {
-  if(!menuBtnContainer.contains(e.target)) menuBtnContainer.classList.remove("active");
+  if(!menuBtnContainer.contains(e.target)) {
+    menuBtnContainer.classList.remove("active");
+  }
 });
 
 
@@ -699,30 +863,48 @@ function activar(el) {
   if(el) el.classList.add("activo");
 }
 
+
 function verTodos() {
   activar(null);
   document.querySelectorAll(".card").forEach(card => card.style.display = "block");
+  mensajeStock.style.display = "none";
 }
 
-function mostrarSellados(el) { activar(el); ocultarTodo(); sellados.forEach(i => i.style.display = "block"); }
-function mostrarPS5(el) { activar(el); ocultarTodo(); ps5.forEach(i => i.style.display = "block"); }
-function mostrarSmart(el) { activar(el); ocultarTodo(); smart.forEach(i => i.style.display = "block"); }
-function mostrarZonaGamer(el) { activar(el); ocultarTodo(); zonagamer.forEach(i => i.style.display = "block"); }
-function mostrarMacbook(el) { activar(el); ocultarTodo(); macbooks.forEach(i => i.style.display = "block"); }
-function mostrarIpad(el) { activar(el); ocultarTodo(); ipad.forEach(i => i.style.display = "block"); }
-function mostrarAirPods(el) { activar(el); ocultarTodo(); airpods.forEach(i => i.style.display = "block"); }
-function mostrarCargadores(el) { activar(el); ocultarTodo(); cargadores.forEach(i => i.style.display = "block"); }
-function mostrarApplePencil(el) { activar(el); ocultarTodo(); applepencil.forEach(i => i.style.display = "block"); }
-function mostrarAppleWatch(el) { activar(el); ocultarTodo(); applewatch.forEach(i => i.style.display = "block"); }
-function mostrarAirTag(el) { activar(el); ocultarTodo(); airtag.forEach(i => i.style.display = "block"); }
-function mostrarParlanteJBL(el) { activar(el); ocultarTodo(); parlantejbl.forEach(i => i.style.display = "block"); }
+
+function mostrarSellados(el){ activar(el); ocultarTodo(); sellados.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarAccesorios(el){ activar(el); ocultarTodo(); accesorios.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarPS5(el){ activar(el); ocultarTodo(); ps5.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarSmart(el){ activar(el); ocultarTodo(); smart.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarZonaGamer(el){ activar(el); ocultarTodo(); zonagamer.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarMacbook(el){ activar(el); ocultarTodo(); macbooks.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarIpad(el){ activar(el); ocultarTodo(); ipad.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarAirPods(el){ activar(el); ocultarTodo(); airpods.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarCargadores(el){ activar(el); ocultarTodo(); cargadores.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarApplePencil(el){ activar(el); ocultarTodo(); applepencil.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarAppleWatch(el){ activar(el); ocultarTodo(); applewatch.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarAirTag(el){ activar(el); ocultarTodo(); airtag.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarParlanteJBL(el){ activar(el); ocultarTodo(); parlantejbl.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+
 
 function filtrarModelo(m, el) {
   activar(el);
   ocultarTodo();
-  usados.forEach(i => {
-    i.style.display = i.dataset.modelo.toLowerCase() === m.toLowerCase() ? "block" : "none";
+
+  let hayStock = false;
+
+  usados.forEach(card => {
+    if(card.dataset.modelo.toLowerCase() === m.toLowerCase()){
+      card.style.display = "block";
+      hayStock = true;
+    }
   });
+
+  if(hayStock){
+    mensajeStock.style.display = "none";
+  }else{
+    mensajeStock.textContent = `SIN STOCK DE ${el.innerText.toUpperCase()}`;
+    mensajeStock.style.display = "block";
+  }
 }
 
 
@@ -761,10 +943,11 @@ function cerrarWhatsapp() {
   document.getElementById("modalWhatsapp").style.display = "none";
 }
 
-
 verTodos();
 </script>
+
 	
 </body>
 </html>
+
 
