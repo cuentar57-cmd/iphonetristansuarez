@@ -965,23 +965,7 @@ h2 {
 </div>
 
 <script>
-
-const usados = document.querySelectorAll(".usado");
-const sellados = document.querySelectorAll(".sellado");
-const accesorios = document.querySelectorAll(".accesorios");
-const zonagamer = document.querySelectorAll('[data-modelo="zonagamer"]');
-const ps5 = document.querySelectorAll(".ps5");
-const smart = document.querySelectorAll(".smart");
-const macbooks = document.querySelectorAll(".macbook");
-const ipad = document.querySelectorAll(".ipad");
-const airpods = document.querySelectorAll(".airpods");
-const cargadores = document.querySelectorAll(".cargadores");
-const applepencil = document.querySelectorAll(".applepencil");
-const applewatch = document.querySelectorAll(".applewatch");
-const airtag = document.querySelectorAll(".airtag");
-const parlantejbl = document.querySelectorAll(".parlantejbl");
 const modelos = document.querySelectorAll(".modelo");
-
 const mensajeStock = document.getElementById("mensaje-stock");
 
 const menuBtnContainer = document.querySelector(".menu-btn-container");
@@ -992,12 +976,19 @@ function buscarProductos(){
   const texto = document.getElementById("buscador").value.toLowerCase();
   activar(null);
 
+  let hay = false;
+
   document.querySelectorAll(".card").forEach(card => {
-    const contenido = card.innerText.toLowerCase();
-    card.style.display = contenido.includes(texto) ? "block" : "none";
+    if(card.innerText.toLowerCase().includes(texto)){
+      card.style.display = "block";
+      hay = true;
+    } else {
+      card.style.display = "none";
+    }
   });
 
-  mensajeStock.style.display = "none";
+  mensajeStock.style.display = hay ? "none" : "block";
+  if(!hay) mensajeStock.textContent = "SIN RESULTADOS";
 }
 
 
@@ -1006,52 +997,70 @@ menuBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("click", e => {
-  if(!menuBtnContainer.contains(e.target)) {
+  if(!menuBtnContainer.contains(e.target)){
     menuBtnContainer.classList.remove("active");
   }
 });
 
 
-function ocultarTodo() {
-  document.querySelectorAll(".card").forEach(card => card.style.display = "none");
+function ocultarTodo(){
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display = "none";
+  });
 }
 
-function activar(el) {
+function activar(el){
   modelos.forEach(m => m.classList.remove("activo"));
   if(el) el.classList.add("activo");
 }
 
 
-function verTodos() {
+function verTodos(){
   activar(null);
-  document.querySelectorAll(".card").forEach(card => card.style.display = "block");
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display = "block";
+  });
   mensajeStock.style.display = "none";
 }
 
 
-function mostrarSellados(el){ activar(el); ocultarTodo(); sellados.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarAccesorios(el){ activar(el); ocultarTodo(); accesorios.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarPS5(el){ activar(el); ocultarTodo(); ps5.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarSmart(el){ activar(el); ocultarTodo(); smart.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarZonaGamer(el){ activar(el); ocultarTodo(); zonagamer.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarMacbook(el){ activar(el); ocultarTodo(); macbooks.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarIpad(el){ activar(el); ocultarTodo(); ipad.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarAirPods(el){ activar(el); ocultarTodo(); airpods.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarCargadores(el){ activar(el); ocultarTodo(); cargadores.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarApplePencil(el){ activar(el); ocultarTodo(); applepencil.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarAppleWatch(el){ activar(el); ocultarTodo(); applewatch.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarAirTag(el){ activar(el); ocultarTodo(); airtag.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
-function mostrarParlanteJBL(el){ activar(el); ocultarTodo(); parlantejbl.forEach(i => i.style.display = "block"); mensajeStock.style.display="none"; }
+function mostrarSellados(el){
+  activar(el);
+  ocultarTodo();
+
+  const cards = document.querySelectorAll(".card.sellado");
+  if(cards.length){
+    cards.forEach(c => c.style.display = "block");
+    mensajeStock.style.display = "none";
+  } else {
+    mensajeStock.textContent = "SIN STOCK DE SELLADOS";
+    mensajeStock.style.display = "block";
+  }
+}
+
+function mostrarAccesorios(el){
+  activar(el);
+  ocultarTodo();
+
+  const cards = document.querySelectorAll(".card.accesorios");
+  if(cards.length){
+    cards.forEach(c => c.style.display = "block");
+    mensajeStock.style.display = "none";
+  } else {
+    mensajeStock.textContent = "SIN STOCK DE ACCESORIOS";
+    mensajeStock.style.display = "block";
+  }
+}
 
 
-function filtrarModelo(m, el) {
+function filtrarModelo(modelo, el){
   activar(el);
   ocultarTodo();
 
   let hayStock = false;
 
-  usados.forEach(card => {
-    if(card.dataset.modelo.toLowerCase() === m.toLowerCase()){
+  document.querySelectorAll(".card").forEach(card => {
+    if(card.dataset.modelo === modelo){
       card.style.display = "block";
       hayStock = true;
     }
@@ -1059,54 +1068,27 @@ function filtrarModelo(m, el) {
 
   if(hayStock){
     mensajeStock.style.display = "none";
-  }else{
+  } else {
     mensajeStock.textContent = `SIN STOCK DE ${el.innerText.toUpperCase()}`;
     mensajeStock.style.display = "block";
   }
 }
 
 
-function abrirCuotas(btn) {
-  const card = btn.closest(".card");
-  if(!card) return;
-
-  let precioARS = card.dataset.usd ? Number(card.dataset.usd) * VALOR_DOLAR : 0;
-  if(!precioARS) return alert("Precio inválido");
-
-  const cuota3 = Math.round(precioARS * 1.25 / 3);
-  const cuota6 = Math.round(precioARS * 1.35 / 6);
-
-  const modal = document.getElementById("modal");
-  const contenido = document.getElementById("modalContent");
-
-  contenido.innerHTML = `
-    <h3>Cuotas</h3>
-    <p>3x $${cuota3.toLocaleString("es-AR")}</p>
-    <p>6x $${cuota6.toLocaleString("es-AR")}</p>
-    <button onclick="cerrar()">Cerrar</button>
-  `;
-  modal.style.display = "flex";
-}
-
-function cerrar() {
-  document.getElementById("modal").style.display = "none";
-}
-
-
-function abrirWhatsApp() {
+function abrirWhatsApp(){
   document.getElementById("modalWhatsapp").style.display = "flex";
 }
 
-function cerrarWhatsapp() {
+function cerrarWhatsapp(){
   document.getElementById("modalWhatsapp").style.display = "none";
 }
+
 
 verTodos();
 </script>
 
-<footer class="credito-premium">
-  Diseño & desarrollo web · 
-  <a href="https://instagram.com/btarratweb" target="_blank">@btarratweb</a>
+<footer class="footer-credito">
+  Hecho por <a href="https://instagram.com/btarratweb" target="_blank">@btarratweb</a>
 </footer>
 
 	
