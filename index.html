@@ -491,6 +491,52 @@ h2 {
   opacity:1;
 }
 
+.modal-galeria{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.galeria-box{
+  background:#111;
+  padding:20px;
+  border-radius:16px;
+  max-width:90%;
+  max-height:80%;
+  overflow:auto;
+}
+
+.contenido-galeria{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+}
+
+.contenido-galeria img{
+  width:100%;
+  border-radius:12px;
+}
+
+.cerrar-galeria{
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  float:right;
+  margin-bottom:10px;
+}
+
+.boton-secundario{
+  background:#222;
+  color:#fff;
+  border:1px solid #444;
+  padding:10px;
+  border-radius:12px;
+  margin:10px 0;
+}
 
 </style>
 </head>
@@ -870,23 +916,39 @@ h2 {
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Fundas de silicona <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
-  <div class="precio-ars">$10.0000</div>
+<div class="card accesorios fundas">
+  <div class="titulo">Fundas de Silicona</div>
+
+<button class="boton-secundario" onclick="abrirGaleria('silicona')">
+  Ver fotos
+</button>
+
+  <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
+
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Fundas Magnéticas <span class="tag accesorioss-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+
+<button class="boton-secundario" onclick="abrirGaleria('magnetica')">
+  Ver fotos
+</button>
+
+
+
   <div class="precio-ars">$12.0000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Fundas Transparentes <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('transparente')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$6.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
@@ -900,42 +962,66 @@ h2 {
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Templados Antiespia <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('antiespia')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$9.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Templados Reforzado <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('reforzado')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$6.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Cable USB APPLE <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('cableusb')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Cable tipo C a Lightning <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('tipoc')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$12.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Adaptador 5W <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('adap5')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$15.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
 
 <div class="card accesorios" data-modelo="accesorios">
   <div class="titulo">Adaptador 20W <span class="tag accesorios-tag">Accesorios</span></div>
-<div class="detalle"></div>
+
+<button class="boton-secundario" onclick="abrirGaleria('adap20')">
+  Ver fotos
+</button>
+
   <div class="precio-ars">$25.000</div>
   <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
 </div>
@@ -969,6 +1055,91 @@ const mensajeStock = document.getElementById("mensaje-stock");
 
 const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
+
+
+function abrirGaleria(tipo){
+  const modal = document.getElementById("modalGaleria");
+  const contenedor = document.getElementById("contenidoGaleria");
+
+  let fotos = [];
+
+  if(tipo === "silicona"){
+    fotos = [
+      "https://i.postimg.cc/HxWy4mqj/Whats_App_Image_2026_02_06_at_13_51_59.jpg",
+      "https://i.postimg.cc/wvxmczC7/Whats_App_Image_2026_02_06_at_13_53_12.jpg",
+      "https://i.postimg.cc/wBQNmMGs/Whats_App_Image_2026_02_06_at_13_54_11.jpg",
+      "https://i.postimg.cc/6QfZvqmT/Whats_App_Image_2026_02_06_at_13_54_20.jpg",
+      "https://i.postimg.cc/VNWtCvVf/Whats_App_Image_2026_02_06_at_13_54_26.jpg"
+    ];
+  }
+
+  if(tipo === "transparente"){
+    fotos = [
+      "https://i.postimg.cc/0N0SwjH3/Whats_App_Image_2026_02_06_at_13_55_41.jpg",
+      "https://i.postimg.cc/8zWMTtdr/Whats_App_Image_2026_02_06_at_13_57_51.jpg",
+      "https://i.postimg.cc/MpRVzd0X/Whats_App_Image_2026_02_06_at_13_58_10.jpg"
+    ];
+  }
+
+
+if(tipo === "antiespia"){
+    fotos = [
+      "https://i.postimg.cc/4NbRjhnt/Whats-App-Image-2026-02-06-at-14-02-22.jpg"
+    ];
+  }
+
+if(tipo === "reforzado"){
+    fotos = [
+      "https://i.postimg.cc/rF756v4V/Whats_App_Image_2026_02_06_at_14_04_37.jpg"
+    ];
+  }
+
+
+if(tipo === "cableusb"){
+    fotos = [
+      "https://i.postimg.cc/Pr01GBDh/Whats_App_Image_2026_02_06_at_13_59_40.jpg"
+    ];
+  }
+
+if(tipo === "tipoc"){
+    fotos = [
+      "https://i.postimg.cc/K8LBmJ7Z/Whats_App_Image_2026_02_06_at_13_58_53.jpg"
+    ];
+  }
+
+if(tipo === "adap5"){
+    fotos = [
+      "https://i.postimg.cc/7YjSvpzx/Whats_App_Image_2026_02_06_at_13_59_27.jpg"
+    ];
+  }
+
+if(tipo === "adap20"){
+    fotos = [
+      "https://i.postimg.cc/dtgGMzC1/Whats_App_Image_2026_02_06_at_13_59_17.jpg"
+    ];
+  }
+
+   if(tipo === "magnetica"){
+    fotos = [
+      "https://i.postimg.cc/g0HhZjTm/Whats_App_Image_2026_02_06_at_13_54_35.jpg",
+      "https://i.postimg.cc/zfrWvKp9/Whats_App_Image_2026_02_06_at_13_56_10.jpg",
+      "https://i.postimg.cc/wBpJMLFL/Whats_App_Image_2026_02_06_at_13_56_24_(1).jpg",
+      "https://i.postimg.cc/JzJZRP3j/Whats_App_Image_2026_02_06_at_13_56_47.jpg",
+      "https://i.postimg.cc/Qd51j0g7/Whats_App_Image_2026_02_06_at_13_57_13.jpg"
+    ];
+  }
+
+
+  contenedor.innerHTML = fotos
+    .map(f => `<img src="${f}">`)
+    .join("");
+
+  modal.style.display = "flex";
+}
+
+function cerrarGaleria(){
+  document.getElementById("modalGaleria").style.display = "none";
+}
 
 
 function buscarProductos(){
@@ -1090,7 +1261,16 @@ verTodos();
   Diseño & desarrollo web · 
   <a href="https://instagram.com/btarratweb" target="_blank">@btarratweb</a>
 </footer>
-	
+
+<div id="modalGaleria" class="modal-galeria">
+  <div class="galeria-box">
+    <span class="cerrar-galeria" onclick="cerrarGaleria()">✕</span>
+    <div id="contenidoGaleria" class="contenido-galeria"></div>
+  </div>
+</div>
+
+
 </body>
 </html>
+
 
