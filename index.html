@@ -1818,8 +1818,12 @@ let carrito = [];
 // Agregar productos al carrito
 function agregarAlCarrito(boton){
   const card = boton.closest(".card");
-  const nombreEl = card.querySelector(".producto-nombre");
-  const precioEl = card.querySelector(".producto-precio");
+
+  // Buscar nombre: primero la clase producto-nombre, si no existe, toma el div.titulo
+  const nombreEl = card.querySelector(".producto-nombre") || card.querySelector(".titulo");
+
+  // Buscar precio: primero la clase producto-precio, si no existe, toma div.precio-ars
+  const precioEl = card.querySelector(".producto-precio") || card.querySelector(".precio-ars");
 
   if(!nombreEl || !precioEl){
     alert("⚠️ Este producto no está listo para el carrito");
