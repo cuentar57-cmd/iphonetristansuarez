@@ -383,6 +383,35 @@ h2 {
   color:#ccc;
 }
 
+.carrito{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 260px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 9999;
+}
+
+.carrito ul{
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.carrito li{
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.carrito.mostrar{
+  display: block;
+}
+
+
 .ps5-tag {
   background: #0055ff;
   color: white;
@@ -478,6 +507,11 @@ h2 {
   font-size:13px;
 }
 
+.boton-secundario{
+  margin-top:8px;
+  text-align:center;
+}
+
 .social-cliente-top a{
   display:flex;
   align-items:center;
@@ -538,6 +572,23 @@ h2 {
   margin:10px 0;
 }
 
+.carrito{
+  color: #111;
+}
+
+.carrito h3{
+  color: #000;
+}
+
+.carrito li{
+  color: #333;
+}
+
+#total-carrito{
+  color: #000;
+}
+
+
 </style>
 </head>
 
@@ -548,6 +599,32 @@ h2 {
     <i class="fab fa-tiktok"></i>
     <span>@IPHONE TRISTAN SUAREZ</span>
   </a>
+</div>
+
+<div id="carrito" class="carrito">
+  <h3>🛒 Carrito</h3>
+
+  <ul id="lista-carrito"></ul>
+  <p id="total-carrito"><strong>Total:</strong> $0</p>
+
+  <hr>
+
+  <h4>📦 Datos para el pedido</h4>
+
+  <input type="text" id="nombre" placeholder="Nombre completo">
+  <input type="text" id="dni" placeholder="DNI">
+  <input type="text" id="direccion" placeholder="Dirección">
+  <input type="text" id="ciudad" placeholder="Ciudad">
+
+  <select id="envio">
+    <option value="">¿Cómo lo querés?</option>
+    <option value="Retiro en local">Retiro en local</option>
+    <option value="Correo">Correo</option>
+    <option value="Cadete">Cadete</option>
+  </select>
+
+  <button class="boton" onclick="finalizarPedido()">Finalizar pedido por WhatsApp</button>
+  <button class="boton-secundario" onclick="vaciarCarrito()">Vaciar carrito</button>
 </div>
 
 
@@ -743,860 +820,748 @@ h2 {
 
 
 <div class="card usado" data-modelo="11">
-  <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 11 64GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$370.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$370.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
   </button>
 </div>
+
 
 <div class="card usado" data-modelo="11-pro">
-  <div class="titulo">iPhone 11 Pro 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 11 Pro 64GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$450.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$450.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
   </button>
 </div>
+
 
 <div class="card usado" data-modelo="11-pro-max">
-  <div class="titulo">iPhone 11 Pro Max 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 11 Pro Max 64GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$450.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$450.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card usado" data-modelo="12">
-  <div class="titulo">iPhone 12 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 12 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$450.000</div>
-<button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-	
-<div class="card usado" data-modelo="12-pro">
-  <div class="titulo">iPhone 12 Pro 128GB <span class="tag usado-tag">Usado</span></div>
-  <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$550.000</div>
- <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$450.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
-<div class="card usado" data-modelo="12-pro-max">
-  <div class="titulo">iPhone 12 Pro Max 128GB <span class="tag usado-tag">Usado</span></div>
+
+<div class="card usado" data-modelo="12-pro">
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 12 Pro 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$620.000</div>
- <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$550.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
+
+<div class="card usado" data-modelo="12-pro-max">
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 12 Pro Max 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$620.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
+</div>
+
 	
 <div class="card usado" data-modelo="13">
-  <div class="titulo">iPhone 13 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 13 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$580.000</div>
- <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$580.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 
 <div class="card usado" data-modelo="13-pro">
-  <div class="titulo">iPhone 13 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 13 Pro 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle">Con detalles</div>
-  <div class="precio-ars">$700.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle">Con detalles</div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$700.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
+
 <div class="card usado" data-modelo="13-pro-max">
-  <div class="titulo">iPhone 13 Pro Max 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 13 Pro Max 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle">Con detalles</div>
-  <div class="precio-ars">$800.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle">Con detalles</div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$800.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 
 <div class="card usado" data-modelo="14">
-  <div class="titulo">iPhone 14 128GB <span class="tag usado-tag">En Caja</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 14 128GB</span>
+    <span class="tag usado-tag">En Caja</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$650.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$650.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card usado" data-modelo="14-pro">
-  <div class="titulo">iPhone 14 Pro 128GB <span class="tag usado-tag">En Caja</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 14 Pro 128GB</span>
+    <span class="tag usado-tag">En Caja</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$800.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$800.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card usado" data-modelo="14-pro-max">
-  <div class="titulo">iPhone 14 Pro Max 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 14 Pro Max 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$900.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$900.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card usado" data-modelo="15">
-  <div class="titulo">iPhone 15 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 15 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$800.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$800.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card usado" data-modelo="15-pro">
-  <div class="titulo">iPhone 15 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 15 Pro 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$950.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$950.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
-	
+
+
 <div class="card usado" data-modelo="15-pro-max">
-  <div class="titulo">iPhone 15 Pro Max 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 15 Pro Max 128GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-  <div class="precio-ars">$1.110.000</div>
- <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$1.110.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card usado" data-modelo="16" data-usd="850">
-  <div class="titulo">iPhone 16 256GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 16 256GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-<div class="precio-usd">USD 850</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-usd">
+    <span class="producto-precio">USD 850</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 	
 <div class="card usado" data-modelo="16-pro" data-usd="850">
-  <div class="titulo">iPhone 16 Pro 256GB <span class="tag usado-tag">Usado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 16 Pro 256GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 93%</div>
-<div class="detalle"></div>
-<div class="precio-usd">USD 850</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-usd">
+    <span class="producto-precio">USD 850</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
-<div class="card usado" data-modelo="16-pro-max" data-usd="850">
-  <div class="titulo">iPhone 16 Pro Max 256GB <span class="tag usado-tag">Usado</span></div>
+
+<div class="card usado" data-modelo="16-pro-max">
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 16 Pro Max 256GB</span>
+    <span class="tag usado-tag">Usado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-<div class="detalle"></div>
-<div class="precio-ars">$1.490.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+  <div class="detalle"></div>
+
+  <div class="precio-ars">
+    <span class="producto-precio">$1.490.000</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
+
 
 <div class="card sellado" data-modelo="17" data-usd="1100">
-  <div class="titulo">iPhone 17 256GB <span class="tag sellado-tag">Sellado</span></div>
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 17 256GB</span>
+    <span class="tag sellado-tag">Sellado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-  <div class="precio-usd">USD 1100</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+
+  <div class="precio-usd">
+    <span class="producto-precio">USD 1100</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
-<div class="card sellado" data-modelo="17" data-usd="1060">
-  <div class="titulo">iPhone 17 AIR 256GB <span class="tag sellado-tag">Sellado</span></div>
+
+<div class="card sellado" data-modelo="17-air" data-usd="1060">
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 17 Air 256GB</span>
+    <span class="tag sellado-tag">Sellado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-  <div class="precio-usd">USD 1060</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+
+  <div class="precio-usd">
+    <span class="producto-precio">USD 1060</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
-<div class="card sellado" data-modelo="17" data-usd="1450">
-  <div class="titulo">iPhone 17 PRO 256GB <span class="tag sellado-tag">Sellado</span></div>
+
+<div class="card sellado" data-modelo="17-pro" data-usd="1450">
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 17 Pro 256GB</span>
+    <span class="tag sellado-tag">Sellado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-  <div class="precio-usd">USD 1450</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+
+  <div class="precio-usd">
+    <span class="producto-precio">USD 1450</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
-<div class="card sellado" data-modelo="17" data-usd="1600">
-  <div class="titulo">iPhone 17 PRO MAX 256GB <span class="tag sellado-tag">Sellado</span></div>
+
+<div class="card sellado" data-modelo="17-pro-max" data-usd="1600">
+  <div class="titulo">
+    <span class="producto-nombre">iPhone 17 Pro Max 256GB</span>
+    <span class="tag sellado-tag">Sellado</span>
+  </div>
+
   <div class="bateria">🔋 100%</div>
-  <div class="precio-usd">USD 1600</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
+
+  <div class="precio-usd">
+    <span class="producto-precio">USD 1600</span>
+  </div>
+
+  <button class="boton" onclick="abrirWhatsApp(this)">Consultar</button>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
 </div>
 
-<div class="card accesorios fundas">
+
+<!-- ACCESORIOS -->
+
+
+
+<div class="card accesorios fundas"
+     data-nombre="Funda de Silicona"
+     data-precio="10000">
+
   <div class="titulo">Fundas de Silicona</div>
 
-<button class="boton-secundario" onclick="abrirGaleria('silicona')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('silicona')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$10.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Fundas Transparentes <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('transparente')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="Funda Transparente"
+     data-precio="6000">
+
+  <div class="titulo">
+    Fundas Transparentes <span class="tag accesorios-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('transparente')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$6.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Transparente MagSafe <span class="tag accesorioss-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('transmagsafe')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="Funda Transparente MagSafe"
+     data-precio="9000">
+
+  <div class="titulo">
+    Transparente MagSafe <span class="tag accesorioss-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('transmagsafe')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$9.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Fundas astronautase <span class="tag accesorioss-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('astronautas')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="Funda MagSafe Matte"
+     data-precio="10000">
 
-  <div class="precio-ars">$8.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+  <div class="titulo">
+    MagSafe Matte <span class="tag accesorioss-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('matte')">
+    Ver fotos
   </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Fundas reforzadas con protector de cámara  <span class="tag accesorioss-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('reforzadas1')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$15.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Fundas MagSafe  <span class="tag accesorioss-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('magsafe2')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$6.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-	
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Fundas silicona case MagSafe  <span class="tag accesorioss-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('siliconacase')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$15.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-	
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> MagSafe Matte<span class="tag accesorioss-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('matte')">
-  Ver fotos
-</button>
 
   <div class="precio-ars">$10.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> Funda Magnetic<span class="tag accesorioss-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('magnetic')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="Funda Magnetic"
+     data-precio="12000">
+
+  <div class="titulo">
+    Funda Magnetic <span class="tag accesorioss-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('magnetic')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$12.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> Magnetic con brillitos<span class="tag accesorioss-tag">Accesorios</span></div>
+<div class="card accesorios"
+     data-nombre="Funda Magnetic con Brillitos"
+     data-precio="12000">
 
-<button class="boton-secundario" onclick="abrirGaleria('brillos')">
-  Ver fotos
-</button>
+  <div class="titulo">
+    Magnetic con brillitos <span class="tag accesorioss-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('brillos')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$12.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> AirPods 4ta generación<span class="tag accesorioss-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('airpods4')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="AirPods 4ta Generación"
+     data-precio="40000">
+
+  <div class="titulo">
+    AirPods 4ta generación <span class="tag accesorioss-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('airpods4')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$40.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> AirPods 2PRO<span class="tag accesorioss-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('airpods')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="AirPods 2 Pro"
+     data-precio="33000">
+
+  <div class="titulo">
+    AirPods 2PRO <span class="tag accesorioss-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('airpods')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$33.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> EarPods originales<span class="tag accesorioss-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('earpods')">
-  Ver fotos
-</button>
+<div class="card accesorios"
+     data-nombre="Vidrio Templado Antiespía"
+     data-precio="9000">
 
-  <div class="precio-ars">$25.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+  <div class="titulo">
+    Templados Antiespia <span class="tag accesorios-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('antiespia')">
+    Ver fotos
   </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> EarPods tipo-C<span class="tag accesorioss-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('earpodsc')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$25.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo"> AirPods 2da pro2<span class="tag accesorioss-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('pro2')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">40.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Templados Antiespia <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('antiespia')">
-  Ver fotos
-</button>
 
   <div class="precio-ars">$9.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
+
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+    🛒 Agregar al carrito
+  </button>
+
+  <button class="boton" onclick="abrirWhatsApp()">
     Consultar
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
+
+<div class="card accesorios" data-modelo="Templado Reforzado">
   <div class="titulo">Templados Reforzado <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('reforzado')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('reforzado')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$6.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
+
+<div class="card accesorios" data-modelo="Cable USB Apple">
   <div class="titulo">Cable USB APPLE <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('cableusb')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('cableusb')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$10.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
+
+<div class="card accesorios" data-modelo="Ventosas adhesivas">
   <div class="titulo">Ventosas adhesivas y doble fass <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('ventosas')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('ventosas')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$8.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Parlante clip JBL <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('jbl')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$30.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Parlante JBL 4 <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('jbl4')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$80.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Parlante JBL flip 6 <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('flip6')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$40.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Reloj  smarwacht 7mallas <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('reloj')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$28.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Reloj smarwacht 1 malla <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('reloj2')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$19.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">TV BOX <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('tvbox')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$45.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Portacelular para auto <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('auto')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$15.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable Apple tipo-C a C original <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('cablecac')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$20.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable Cargador MagSafe<span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('cargadormagsafe')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$18.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-	
-<div class="card accesorios" data-modelo="accesorios">
+<div class="card accesorios" data-modelo="Cable Tipo C a Lightning">
   <div class="titulo">Cable tipo C a Lightning <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('tipoc')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('tipoc')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$12.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable puxida 4 en 1 certificado por apple <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('puxida')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$8.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Adaptador 5 en 1 tipo-C <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('adaptador5')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$30.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Auriculares alternativos puxida <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('auriculares')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$8.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Auxiliar a Lightning <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('auxiliar1')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$8.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Auxiliar a Tipo-c <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('auxiliarc')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$8.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
+<div class="card accesorios" data-modelo="Battery Pack">
   <div class="titulo">Battery Pack <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('batery')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('batery')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$30.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
+v
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Charger MagSafe <span class="tag accesorios-tag">Accesorios</span></div>
+<div class="card accesorios" data-modelo="Charger MagSafe">
+  <div class="titulo">
+    Charger MagSafe <span class="tag accesorios-tag">Accesorios</span>
+  </div>
 
-<button class="boton-secundario" onclick="abrirGaleria('charger')">
-  Ver fotos
-</button>
+  <button class="boton-secundario" onclick="abrirGaleria('charger')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$20.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
-	
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Adaptador 5W <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('adap5')">
-  Ver fotos
-</button>
+
+<div class="card accesorios" data-modelo="Adaptador 5W">
+  <div class="titulo">
+    Adaptador 5W <span class="tag accesorios-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('adap5')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$15.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Adaptador 20W <span class="tag accesorios-tag">Accesorios</span></div>
 
-<button class="boton-secundario" onclick="abrirGaleria('adap20')">
-  Ver fotos
-</button>
+<div class="card accesorios" data-modelo="Adaptador 20W">
+  <div class="titulo">
+    Adaptador 20W <span class="tag accesorios-tag">Accesorios</span>
+  </div>
+
+  <button class="boton-secundario" onclick="abrirGaleria('adap20')">
+    Ver fotos
+  </button>
 
   <div class="precio-ars">$25.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
+
+  <button class="boton" onclick="agregarAlCarrito(this)">
+    Agregar al carrito
   </button>
 </div>
 
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cargador para auto carga rápida  <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('autocarga')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$12.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cargador para auto usb 2  <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('autousb2')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$12.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cargador auto original tipo-C   <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('autooriginal')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$20.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable Tipo-C a C adicional Lightning    <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('adicional')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$20.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
- <div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cargador completo Tipo-c puxida  <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('cargadorcompleto')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$10.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cargador completo v8 puxida  <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('cargadorv8')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$10.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable tipo-C a  C reforzado puxida   <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('reforzadopuxida')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$10.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable tipo-C a C  puxida    <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('puxidac')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$4.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable usb a v8 puxida    <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('puxidausbv8')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$4.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable usb a Lightning puxida    <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('puxida2')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$4.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
-
-<div class="card accesorios" data-modelo="accesorios">
-  <div class="titulo">Cable usb a tipo-C puxida   <span class="tag accesorios-tag">Accesorios</span></div>
-
-<button class="boton-secundario" onclick="abrirGaleria('puxidatipoc')">
-  Ver fotos
-</button>
-
-  <div class="precio-ars">$4.000</div>
-  <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">
-    Consultar
-  </button>
-</div>
 
 
 </div>
@@ -1628,22 +1593,107 @@ const mensajeStock = document.getElementById("mensaje-stock");
 const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
 
-function abrirWhatsAppDesdeCard(boton) {
-  const card = boton.closest('.card');
-  const producto = card.querySelector('.titulo')?.innerText || 'el producto';
-  const precio = card.querySelector('.precio-ars')?.innerText || '';
-  const estado = card.querySelector('.tag')?.innerText || '';
+ 
+let carrito = [];
 
-  const telefono = "5491168330009";
+function agregarAlCarrito(boton){
+  const card = boton.closest(".card");
+  const nombreEl = card.querySelector(".producto-nombre");
+  const precioEl = card.querySelector(".producto-precio");
 
-  const mensaje = `Hola! 👋 Quería consultar por ${producto}${estado ? ' (' + estado + ')' : ''}${precio ? ' - ' + precio : ''}. ¿Está disponible?`;
+  if(!nombreEl || !precioEl){
+    alert("⚠️ Este producto no está listo para el carrito");
+    return;
+  }
 
-  const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, "_blank");
+  const nombre = nombreEl.innerText;
+  const precioTexto = precioEl.innerText.replace(/\D/g, "");
+  const precio = parseInt(precioTexto);
+
+  carrito.push({ nombre, precio });
+
+  actualizarCarrito();
 }
 
+function actualizarCarrito(){
+  const lista = document.getElementById("lista-carrito");
+  const totalEl = document.getElementById("total-carrito");
+  const contenedor = document.getElementById("carrito");
 
-	
+  lista.innerHTML = "";
+
+  let total = 0;
+
+  carrito.forEach(p => {
+    total += p.precio;
+    const li = document.createElement("li");
+    li.textContent = `${p.nombre} - $${p.precio.toLocaleString()}`;
+    lista.appendChild(li);
+  });
+
+  totalEl.innerHTML = `<strong>Total:</strong> $${total.toLocaleString()}`;
+
+  if(carrito.length > 0){
+    contenedor.classList.add("mostrar");
+  }
+}
+
+function vaciarCarrito(){
+  carrito = [];
+  document.getElementById("carrito").classList.remove("mostrar");
+}
+
+function abrirWhatsApp(boton){
+  let mensaje = "Hola! Quiero comprar:%0A";
+
+  carrito.forEach((p, i) => {
+    mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
+  });
+
+  window.open(
+    "https://wa.me/5491168330009?text=" + mensaje,
+    "_blank"
+  );
+}
+
+function finalizarPedido(){
+  if(carrito.length === 0){
+    alert("El carrito está vacío");
+    return;
+  }
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const dni = document.getElementById("dni").value.trim();
+  const direccion = document.getElementById("direccion").value.trim();
+  const ciudad = document.getElementById("ciudad").value.trim();
+  const envio = document.getElementById("envio").value;
+
+  if(!nombre || !dni || !direccion || !ciudad || !envio){
+    alert("Completá todos los datos para continuar");
+    return;
+  }
+
+  let mensaje = "🛒 *NUEVO PEDIDO*%0A%0A";
+
+  carrito.forEach((p, i) => {
+    mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
+  });
+
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+
+  mensaje += `%0A*Total:* $${total.toLocaleString()}%0A%0A`;
+  mensaje += `👤 *Cliente:* ${nombre}%0A`;
+  mensaje += `🆔 *DNI:* ${dni}%0A`;
+  mensaje += `📍 *Dirección:* ${direccion}%0A`;
+  mensaje += `🏙 *Ciudad:* ${ciudad}%0A`;
+  mensaje += `🚚 *Envío:* ${envio}`;
+
+  window.open(
+    "https://wa.me/5491168330009?text=" + mensaje,
+    "_blank"
+  );
+}
+
 function abrirGaleria(tipo){
   const modal = document.getElementById("modalGaleria");
   const contenedor = document.getElementById("contenidoGaleria");
@@ -1688,32 +1738,6 @@ if(tipo === "magnetic"){
     ];
   }
 
-if(tipo === "astronautas"){
-    fotos = [
-      "https://i.postimg.cc/3wkdMwkZ/Whats_App_Image_2026_02_13_at_16_51_39_(1).jpg",
-      "https://i.postimg.cc/fbVJ4bVK/Whats_App_Image_2026_02_13_at_16_51_39_(2).jpg",
-      "https://i.postimg.cc/HLrVGLrz/Whats_App_Image_2026_02_13_at_16_51_40.jpg",
-    ];
-  }
-
-if(tipo === "siliconacase"){
-    fotos = [
-      "https://i.postimg.cc/tCRRQgfh/Whats-App-Image-2026-02-13-at-16-51-40-(1).jpg"
-    ];
-  }
-
-  if(tipo === "reforzadas1"){
-    fotos = [
-      "https://i.postimg.cc/bvnpHSGR/Whats-App-Image-2026-02-13-at-16-51-41.jpg"
-    ];
-  }
-
- if(tipo === "magsafe2"){
-    fotos = [
-      "https://i.postimg.cc/9MV5d8Hb/Whats-App-Image-2026-02-13-at-16-51-42-(1).jpg"
-    ];
-  }
-
 
 if(tipo === "antiespia"){
     fotos = [
@@ -1739,191 +1763,12 @@ if(tipo === "cableusb"){
     ];
   }
 
-if(tipo === "pro2"){
-    fotos = [
-      "https://i.postimg.cc/YqNXgrqJ/Whats-App-Image-2026-02-13-at-16-51-45-(1).jpg",
-	  "https://i.postimg.cc/qMGLq1j5/Whats-App-Image-2026-02-13-at-16-51-46.jpg"
-    ];
-  }
-
-if(tipo === "jbl"){
-    fotos = [
-      "https://i.postimg.cc/hjx8BsXV/Whats_App_Image_2026_02_13_at_16_53_00.jpg",
-	  "https://i.postimg.cc/C1DCg7Rj/Whats_App_Image_2026_02_13_at_16_53_00_(1).jpg"
-    ];
-  }
-
-if(tipo === "jbl4"){
-    fotos = [
-      "https://i.postimg.cc/NGkTk5mw/Whats-App-Image-2026-02-13-at-16-53-32.jpg"
-    ];
-  }
-
-if(tipo === "flip6"){
-    fotos = [
-      "https://i.postimg.cc/3RH4gTwv/Whats-App-Image-2026-02-13-at-16-53-53.jpg"
-    ];
-  }
-
-if(tipo === "cargadormagsafe"){
-    fotos = [
-      "https://i.postimg.cc/j5918ZGn/Whats-App-Image-2026-02-13-at-16-51-44-(1).jpg"
-    ];
-  }
-
-if(tipo === "earpodsc"){
-    fotos = [
-      "https://i.postimg.cc/yN8rsMK5/Whats-App-Image-2026-02-13-at-16-51-45.jpg"
-    ];
-  }
-	
-if(tipo === "auto"){
-    fotos = [
-      "https://i.postimg.cc/3x3RwRVS/Whats_App_Image_2026_02_13_at_16_51_28_(1).jpg",
-	  "https://i.postimg.cc/zGqBfB62/Whats_App_Image_2026_02_13_at_16_51_28.jpg",
-	  "https://i.postimg.cc/mgTDrDJ0/Whats_App_Image_2026_02_13_at_16_51_27_(1).jpg",
-	  "https://i.postimg.cc/7Zq6L6dj/Whats_App_Image_2026_02_13_at_16_51_27.jpg",
-	  "https://i.postimg.cc/Vkz6N6px/Whats_App_Image_2026_02_13_at_16_51_26_(1).jpg"
-    ];
-  }
-
-if(tipo === "cablecac"){
-    fotos = [
-      "https://i.postimg.cc/02Mj4FD5/Whats_App_Image_2026_02_13_at_16_51_26.jpg"
-		];
-  }
-
-if(tipo === "autooriginal"){
-    fotos = [
-      "https://i.postimg.cc/pdJ1HP3T/Whats-App-Image-2026-02-13-at-16-51-43.jpg"
-		];
-  }
-
-if(tipo === "adicional"){
-    fotos = [
-      "https://i.postimg.cc/1RbxM3Qd/Whats-App-Image-2026-02-13-at-16-51-44.jpg"
-		];
-  }
-
-
-	
-if(tipo === "tvbox"){
-    fotos = [
-      "https://i.postimg.cc/0NLcpLY9/Whats-App-Image-2026-02-13-at-16-51-25.jpg"
-    ];
-  }
-
 if(tipo === "tipoc"){
     fotos = [
-      "https://i.postimg.cc/4yVkh0Tw/Whats-App-Image-2026-02-07-at-12-13-02-(1).jpg",
+      "https://i.postimg.cc/4yVkh0Tw/Whats-App-Image-2026-02-07-at-12-13-02-(1).jpg"
     ];
   }
 
-if(tipo === "puxida"){
-    fotos = [
-      "https://i.postimg.cc/XvR6p1Xs/Whats_App_Image_2026_02_13_at_16_51_29.jpg",
-	  "https://i.postimg.cc/cJpGrk6X/Whats_App_Image_2026_02_13_at_16_51_30.jpg"
-    ];
-  }
-
-if(tipo === "puxida2"){
-    fotos = [
-      "https://i.postimg.cc/GpFJ0H0J/Whats-App-Image-2026-02-13-at-16-51-36.jpg"
-    ];
-  }
-
-if(tipo === "adaptador5"){
-    fotos = [
-      "https://i.postimg.cc/G2mGTKNb/Whats-App-Image-2026-02-13-at-16-51-30-(1).jpg"
-    ];
-  }
-
-if(tipo === "auriculares"){
-    fotos = [
-      "https://i.postimg.cc/Zn38JR29/Whats-App-Image-2026-02-13-at-16-51-31.jpg",
-	  "https://i.postimg.cc/T3TVXT9g/Whats-App-Image-2026-02-13-at-16-51-31-(1).jpg"
-    ];
-  }
-
-if(tipo === "reloj"){
-    fotos = [
-      "https://i.postimg.cc/44mw8v4d/Whats-App-Image-2026-02-13-at-16-51-37.jpg",
-	  "https://i.postimg.cc/MpbYcd5N/Whats-App-Image-2026-02-13-at-16-51-37-(1).jpg"
-    ];
-  }
-
-if(tipo === "reloj2"){
-    fotos = [
-      "https://i.postimg.cc/D0LX9wYP/Whats_App_Image_2026_02_13_at_16_51_38.jpg",
-	  "https://i.postimg.cc/QC1T2dnk/Whats_App_Image_2026_02_13_at_16_51_39.jpg"
-    ];
-  }
-
-if(tipo === "autocarga"){
-    fotos = [
-      "https://i.postimg.cc/nLCQHrQn/Whats-App-Image-2026-02-13-at-16-51-31-(2).jpg"
-    ];
-  }
-
-if(tipo === "autousb2"){
-    fotos = [
-      "https://i.postimg.cc/PJzC68Bk/Whats-App-Image-2026-02-13-at-16-51-32.jpg"
-    ];
-  }
-
-if(tipo === "auxiliar1"){
-    fotos = [
-      "https://i.postimg.cc/TPzhf969/Whats-App-Image-2026-02-13-at-16-51-32-(1).jpg"
-    ];
-  }
-
-if(tipo === "auxiliarc"){
-    fotos = [
-      "https://i.postimg.cc/zDjDc5ym/Whats-App-Image-2026-02-13-at-16-51-33.jpg"
-    ];
-  }
-
-if(tipo === "cargadorcompleto"){
-    fotos = [
-      "https://i.postimg.cc/yN4zNrDR/Whats-App-Image-2026-02-13-at-16-51-33-(1).jpg"
-    ];
-  }
-
-if(tipo === "cargadorv8"){
-    fotos = [
-      "https://i.postimg.cc/DzKthJNM/Whats-App-Image-2026-02-13-at-16-51-34.jpg"
-    ];
-  }
-
-if(tipo === "reforzadopuxida"){
-    fotos = [
-      "https://i.postimg.cc/k5chdjK9/Whats-App-Image-2026-02-13-at-16-51-34-(1).jpg"
-    ];
-  }
-;
-
-if(tipo === "puxidac"){
-    fotos = [
-      "https://i.postimg.cc/FHXPktVW/Whats-App-Image-2026-02-13-at-16-51-35.jpg"
-    ];
-  }
-;
-
-if(tipo === "puxidausbv8"){
-    fotos = [
-      "https://i.postimg.cc/pT5GnP3d/Whats-App-Image-2026-02-13-at-16-51-35-(1).jpg"
-    ];
-  }
-;
-
-if(tipo === "puxidatipoc"){
-    fotos = [
-      "https://i.postimg.cc/6qky5fnn/Whats-App-Image-2026-02-13-at-16-51-36-(1).jpg"
-    ];
-  }
-;
-  
-	
 if(tipo === "batery"){
     fotos = [
       "https://i.postimg.cc/T39yD7dQ/Whats_App_Image_2026_02_07_at_12_13_06.jpg",
@@ -1947,12 +1792,6 @@ if(tipo === "airpods4"){
 if(tipo === "airpods"){
     fotos = [
       "https://i.postimg.cc/3xDnx1SM/Whats-App-Image-2026-02-07-at-12-13-03-(2).jpg"
-    ];
-  }
-
-if(tipo === "earpods"){
-    fotos = [
-      "https://i.postimg.cc/FzBBBG83/Whats-App-Image-2026-02-13-at-16-51-42-(2).jpg"
     ];
   }
 
@@ -2139,10 +1978,5 @@ verTodos();
 
 </body>
 </html>
-
-
-
-
-
 
 
