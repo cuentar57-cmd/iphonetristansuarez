@@ -588,59 +588,51 @@ h2 {
   color: #000;
 }
 
-#carrito {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 300px;
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 9999;
-}
-
-/* Botón flotante */
-#minimizar-carrito {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  font-size: 18px;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-  padding: 5px 0;
-}
+/* Botón flotante pequeño abajo a la derecha */
 #boton-carrito {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 45px;    /* tamaño un poco más grande */
-  height: 45px;   /* igual */
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #ffcc00;
   border: none;
-  font-size: 20px;  /* emoji y número más visibles */
+  font-size: 20px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
-#contador-carrito {
-  font-size: 14px;  /* más fácil de leer */
-  margin-left: 2px;
-  font-weight: bold;
+
+/* Ventana del carrito */
+#carrito {
+  position: fixed;
+  bottom: 80px; /* justo arriba del botón */
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  display: none; /* cerrado por defecto */
+  z-index: 999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
 }
 
-/* Cuando está minimizado: todo adentro oculto */
-#carrito.minimizado ul,
-#carrito.minimizado #total-carrito,
-#carrito.minimizado h4,
-#carrito.minimizado input,
-#carrito.minimizado select,
-#carrito.minimizado .boton,
-#carrito.minimizado .boton-secundario {
-  display: none;
+/* Estado abierto */
+#carrito.abierto {
+  display: block;
+}
+
+/* Contador dentro del botón */
+#contador-carrito {
+  font-size: 14px;
+  margin-left: 2px;
+  font-weight: bold;
 }
 	
 
@@ -660,8 +652,13 @@ h2 {
 <button id="boton-carrito" onclick="toggleCarrito()">🛒<span id="contador-carrito">0</span></button>
 
 <!-- Ventana del carrito -->
-<div id="carrito" class="minimizado">
-  <button id="minimizar-carrito" onclick="toggleCarrito()">▲</button>
+<!-- Botón flotante del carrito -->
+<button id="boton-carrito" onclick="abrirCerrarCarrito()">
+  🛒 <span id="contador-carrito">0</span>
+</button>
+
+<!-- Ventana del carrito -->
+<div id="carrito" class="cerrado">
   <h4>📦 Carrito de compras</h4>
   <ul id="lista-carrito"></ul>
   <div id="total-carrito"><strong>Total:</strong> $0</div>
@@ -1754,6 +1751,7 @@ function toggleCarrito() {
  
 let carrito = [];
 
+// Agregar productos al carrito
 function agregarAlCarrito(boton){
   const card = boton.closest(".card");
   const nombreEl = card.querySelector(".producto-nombre");
@@ -1765,23 +1763,23 @@ function agregarAlCarrito(boton){
   }
 
   const nombre = nombreEl.innerText;
-  const precioTexto = precioEl.innerText.replace(/\D/g, "");
-  const precio = parseInt(precioTexto);
+  const precio = parseInt(precioEl.innerText.replace(/\D/g, ""));
 
   carrito.push({ nombre, precio });
+
   actualizarCarrito();
 }
 
+// Actualizar lista y contador
 function actualizarCarrito(){
   const lista = document.getElementById("lista-carrito");
   const totalEl = document.getElementById("total-carrito");
-  const contenedor = document.getElementById("carrito");
   const contador = document.getElementById("contador-carrito");
 
   lista.innerHTML = "";
   let total = 0;
 
-  carrito.forEach(p => {
+  carrito.forEach((p,i) => {
     total += p.precio;
     const li = document.createElement("li");
     li.textContent = `${p.nombre} - $${p.precio.toLocaleString()}`;
@@ -1789,60 +1787,21 @@ function actualizarCarrito(){
   });
 
   totalEl.innerHTML = `<strong>Total:</strong> $${total.toLocaleString()}`;
-  contador.innerText = carrito.length;
 
-  if(carrito.length > 0){
-    contenedor.classList.remove("minimizado"); // Se muestra al agregar
-  }
+  // Actualizar contador del botón
+  contador.innerText = carrito.length;
 }
 
+// Abrir/cerrar ventana del carrito
+function abrirCerrarCarrito(){
+  const carritoDiv = document.getElementById("carrito");
+  carritoDiv.classList.toggle("abierto");
+}
+
+// Vaciar carrito
 function vaciarCarrito(){
   carrito = [];
-  document.getElementById("carrito").classList.add("minimizado");
-  document.getElementById("contador-carrito").innerText = 0;
-}
-
-function finalizarPedido(){
-  if(carrito.length === 0){
-    alert("El carrito está vacío");
-    return;
-  }
-
-  const nombre = document.getElementById("nombre").value.trim();
-  const dni = document.getElementById("dni").value.trim();
-  const direccion = document.getElementById("direccion").value.trim();
-  const ciudad = document.getElementById("ciudad").value.trim();
-  const envio = document.getElementById("envio").value;
-
-  if(!nombre || !dni || !direccion || !ciudad || !envio){
-    alert("Completá todos los datos para continuar");
-    return;
-  }
-
-  let mensaje = "🛒 *NUEVO PEDIDO*%0A%0A";
-
-  carrito.forEach((p, i) => {
-    mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
-  });
-
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
-
-  mensaje += `%0A*Total:* $${total.toLocaleString()}%0A%0A`;
-  mensaje += `👤 *Cliente:* ${nombre}%0A`;
-  mensaje += `🆔 *DNI:* ${dni}%0A`;
-  mensaje += `📍 *Dirección:* ${direccion}%0A`;
-  mensaje += `🏙 *Ciudad:* ${ciudad}%0A`;
-  mensaje += `🚚 *Envío:* ${envio}`;
-
-  window.open(
-    "https://wa.me/5491168330009?text=" + mensaje,
-    "_blank"
-  );
-}
-
-function toggleCarrito(){
-  const contenedor = document.getElementById("carrito");
-  contenedor.classList.toggle("minimizado");
+  actualizarCarrito();
 }
 function abrirGaleria(tipo){
   const modal = document.getElementById("modalGaleria");
