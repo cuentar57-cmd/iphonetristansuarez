@@ -1878,6 +1878,44 @@ function vaciarCarrito(){
   actualizarCarrito();
 }
 
+function finalizarPedido(){
+  if(carrito.length === 0){
+    alert("El carrito está vacío");
+    return;
+  }
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const dni = document.getElementById("dni").value.trim();
+  const direccion = document.getElementById("direccion").value.trim();
+  const ciudad = document.getElementById("ciudad").value.trim();
+  const envio = document.getElementById("envio").value;
+
+  if(!nombre || !dni || !direccion || !ciudad || !envio){
+    alert("Completá todos los datos para continuar");
+    return;
+  }
+
+  // 📝 Aquí se arma el mensaje con emojis
+  let mensaje = "🛒 *NUEVO PEDIDO*%0A%0A";
+
+  carrito.forEach((p, i) => {
+    mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
+  });
+
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+
+  mensaje += `%0A*Total:* $${total.toLocaleString()}%0A%0A`;
+  mensaje += `👤 *Cliente:* ${nombre}%0A`;
+  mensaje += `🆔 *DNI:* ${dni}%0A`;
+  mensaje += `📍 *Dirección:* ${direccion}%0A`;
+  mensaje += `🏙 *Ciudad:* ${ciudad}%0A`;
+  mensaje += `🚚 *Envío:* ${envio}`;
+
+  window.open(
+    "https://wa.me/5491168330009?text=" + mensaje,
+    "_blank"
+  );
+}
 function abrirGaleria(tipo){
   const modal = document.getElementById("modalGaleria");
   const contenedor = document.getElementById("contenidoGaleria");
