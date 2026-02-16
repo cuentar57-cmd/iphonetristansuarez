@@ -588,6 +588,24 @@ h2 {
   color: #000;
 }
 
+#minimizar-carrito {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#carrito.minimizado ul,
+#carrito.minimizado #total-carrito,
+#carrito.minimizado h4,
+#carrito.minimizado input,
+#carrito.minimizado select,
+#carrito.minimizado .boton,
+#carrito.minimizado .boton-secundario {
+  display: none;
+}
+	
 
 </style>
 </head>
@@ -601,16 +619,13 @@ h2 {
   </a>
 </div>
 
-<div id="carrito" class="carrito">
-  <h3>🛒 Carrito</h3>
+<div id="carrito">
+  <button id="minimizar-carrito">🛒 Carrito 🔽</button>
 
   <ul id="lista-carrito"></ul>
-  <p id="total-carrito"><strong>Total:</strong> $0</p>
-
-  <hr>
+  <div id="total-carrito"><strong>Total:</strong> $0</div>
 
   <h4>📦 Datos para el pedido</h4>
-
   <input type="text" id="nombre" placeholder="Nombre completo">
   <input type="text" id="dni" placeholder="DNI">
   <input type="text" id="direccion" placeholder="Dirección">
@@ -624,7 +639,7 @@ h2 {
   </select>
 
   <button class="boton" onclick="finalizarPedido()">Finalizar pedido por WhatsApp</button>
-  <button class="boton-secundario" onclick="vaciarCarrito()">Vaciar carrito</button>
+  <button class="boton-secundario" onclick="vaciarCarrito()">🗑 Vaciar carrito</button>
 </div>
 
 
@@ -1228,80 +1243,90 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('silicona')">Ver fotos</button>
   <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="6000">
   <div class="titulo">Fundas Transparentes</div>
   <button class="boton-secundario" onclick="abrirGaleria('transparente')">Ver fotos</button>
   <div class="precio-ars">$6.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="9000">
   <div class="titulo">Transparente MagSafe</div>
   <button class="boton-secundario" onclick="abrirGaleria('transmagsafe')">Ver fotos</button>
   <div class="precio-ars">$9.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="8000">
   <div class="titulo">Fundas astronautase</div>
   <button class="boton-secundario" onclick="abrirGaleria('astronautas')">Ver fotos</button>
   <div class="precio-ars">$8.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="15000">
   <div class="titulo">Fundas reforzadas con protector de cámara</div>
   <button class="boton-secundario" onclick="abrirGaleria('reforzadas1')">Ver fotos</button>
   <div class="precio-ars">$15.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="6000">
   <div class="titulo">Fundas MagSafe</div>
   <button class="boton-secundario" onclick="abrirGaleria('magsafe2')">Ver fotos</button>
   <div class="precio-ars">$6.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="15000">
   <div class="titulo">Fundas silicona case MagSafe</div>
   <button class="boton-secundario" onclick="abrirGaleria('siliconacase')">Ver fotos</button>
   <div class="precio-ars">$15.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="10000">
   <div class="titulo">MagSafe Matte</div>
   <button class="boton-secundario" onclick="abrirGaleria('matte')">Ver fotos</button>
   <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="12000">
   <div class="titulo">Funda Magnetic</div>
   <button class="boton-secundario" onclick="abrirGaleria('magnetic')">Ver fotos</button>
   <div class="precio-ars">$12.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="12000">
   <div class="titulo">Magnetic con brillitos</div>
   <button class="boton-secundario" onclick="abrirGaleria('brillos')">Ver fotos</button>
   <div class="precio-ars">$12.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- AIRPODS -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="40000">
@@ -1309,40 +1334,45 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('airpods4')">Ver fotos</button>
   <div class="precio-ars">$40.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="33000">
   <div class="titulo">AirPods 2PRO</div>
   <button class="boton-secundario" onclick="abrirGaleria('airpods')">Ver fotos</button>
   <div class="precio-ars">$33.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="40000">
   <div class="titulo">AirPods 2da pro2</div>
   <button class="boton-secundario" onclick="abrirGaleria('pro2')">Ver fotos</button>
   <div class="precio-ars">$40.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="25000">
   <div class="titulo">EarPods originales</div>
   <button class="boton-secundario" onclick="abrirGaleria('earpods')">Ver fotos</button>
   <div class="precio-ars">$25.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="25000">
   <div class="titulo">EarPods tipo-C</div>
   <button class="boton-secundario" onclick="abrirGaleria('earpodsc')">Ver fotos</button>
   <div class="precio-ars">$25.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 
 
@@ -1352,24 +1382,27 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('jbl')">Ver fotos</button>
   <div class="precio-ars">$30.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="80000">
   <div class="titulo">Parlante JBL 4</div>
   <button class="boton-secundario" onclick="abrirGaleria('jbl4')">Ver fotos</button>
   <div class="precio-ars">$80.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="40000">
   <div class="titulo">Parlante JBL flip 6</div>
   <button class="boton-secundario" onclick="abrirGaleria('flip6')">Ver fotos</button>
   <div class="precio-ars">$40.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- RELOJES -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="28000">
@@ -1377,16 +1410,18 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('reloj')">Ver fotos</button>
   <div class="precio-ars">$28.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="19000">
   <div class="titulo">Reloj smartwatch 1 malla</div>
   <button class="boton-secundario" onclick="abrirGaleria('reloj2')">Ver fotos</button>
   <div class="precio-ars">$19.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- TV BOX -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="45000">
@@ -1394,8 +1429,9 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('tvbox')">Ver fotos</button>
   <div class="precio-ars">$45.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- PORTACELULAR -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="15000">
@@ -1403,8 +1439,9 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('auto')">Ver fotos</button>
   <div class="precio-ars">$15.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- CABLES Y CARGADORES -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="20000">
@@ -1412,40 +1449,45 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('cablecac')">Ver fotos</button>
   <div class="precio-ars">$20.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="18000">
   <div class="titulo">Cable Cargador MagSafe</div>
   <button class="boton-secundario" onclick="abrirGaleria('cargadormagsafe')">Ver fotos</button>
   <div class="precio-ars">$18.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="12000">
   <div class="titulo">Cable tipo C a Lightning</div>
   <button class="boton-secundario" onclick="abrirGaleria('tipoc')">Ver fotos</button>
   <div class="precio-ars">$12.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="8000">
   <div class="titulo">Cable puxida 4 en 1 certificado por Apple</div>
   <button class="boton-secundario" onclick="abrirGaleria('puxida')">Ver fotos</button>
   <div class="precio-ars">$8.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="30000">
   <div class="titulo">Adaptador 5 en 1 tipo-C</div>
   <button class="boton-secundario" onclick="abrirGaleria('adaptador5')">Ver fotos</button>
   <div class="precio-ars">$30.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- AUXILIARES -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="8000">
@@ -1453,24 +1495,27 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('auriculares')">Ver fotos</button>
   <div class="precio-ars">$8.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="8000">
   <div class="titulo">Auxiliar a Lightning</div>
   <button class="boton-secundario" onclick="abrirGaleria('auxiliar1')">Ver fotos</button>
   <div class="precio-ars">$8.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="8000">
   <div class="titulo">Auxiliar a Tipo-C</div>
   <button class="boton-secundario" onclick="abrirGaleria('auxiliarc')">Ver fotos</button>
   <div class="precio-ars">$8.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- BATTERY PACK -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="30000">
@@ -1478,8 +1523,9 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('batery')">Ver fotos</button>
   <div class="precio-ars">$30.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- CARGADORES MAGSAFE -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="20000">
@@ -1487,24 +1533,27 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('charger')">Ver fotos</button>
   <div class="precio-ars">$20.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="15000">
   <div class="titulo">Adaptador 5W</div>
   <button class="boton-secundario" onclick="abrirGaleria('adap5')">Ver fotos</button>
   <div class="precio-ars">$15.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="25000">
   <div class="titulo">Adaptador 20W</div>
   <button class="boton-secundario" onclick="abrirGaleria('adap20')">Ver fotos</button>
   <div class="precio-ars">$25.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- CARGADORES DE AUTO -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="12000">
@@ -1512,8 +1561,9 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('autocarga')">Ver fotos</button>
   <div class="precio-ars">$12.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- CARGADORES COMPLETOS Y V8 -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="10000">
@@ -1521,16 +1571,18 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('cargadorcompleto')">Ver fotos</button>
   <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="10000">
   <div class="titulo">Cargador completo v8 puxida</div>
   <button class="boton-secundario" onclick="abrirGaleria('cargadorv8')">Ver fotos</button>
   <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- CABLES REFORZADOS -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="10000">
@@ -1538,8 +1590,9 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('reforzadopuxida')">Ver fotos</button>
   <div class="precio-ars">$10.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- CABLES PUXIDA VARIOS -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="4000">
@@ -1547,32 +1600,36 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('puxidac')">Ver fotos</button>
   <div class="precio-ars">$4.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="4000">
   <div class="titulo">Cable usb a v8 puxida</div>
   <button class="boton-secundario" onclick="abrirGaleria('puxidausbv8')">Ver fotos</button>
   <div class="precio-ars">$4.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="4000">
   <div class="titulo">Cable usb a Lightning puxida</div>
   <button class="boton-secundario" onclick="abrirGaleria('puxida2')">Ver fotos</button>
   <div class="precio-ars">$4.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="4000">
   <div class="titulo">Cable usb a tipo-C puxida</div>
   <button class="boton-secundario" onclick="abrirGaleria('puxidatipoc')">Ver fotos</button>
   <div class="precio-ars">$4.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <!-- OTROS CABLES Y ADAPTADORES -->
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="20000">
@@ -1580,32 +1637,36 @@ h2 {
   <button class="boton-secundario" onclick="abrirGaleria('cablecac')">Ver fotos</button>
   <div class="precio-ars">$20.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="12000">
   <div class="titulo">Cargador para auto usb 2</div>
   <button class="boton-secundario" onclick="abrirGaleria('autousb2')">Ver fotos</button>
   <div class="precio-ars">$12.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="20000">
   <div class="titulo">Cargador auto original tipo-C</div>
   <button class="boton-secundario" onclick="abrirGaleria('autooriginal')">Ver fotos</button>
   <div class="precio-ars">$20.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 <div class="card accesorios" data-modelo="accesorios" data-disponible="true" data-precio="20000">
   <div class="titulo">Cable Tipo-C a C adicional Lightning</div>
   <button class="boton-secundario" onclick="abrirGaleria('adicional')">Ver fotos</button>
   <div class="precio-ars">$20.000</div>
   <button class="boton" onclick="abrirWhatsAppDesdeCard(this)">Consultar</button>
-  <button class="boton-carrito" onclick="agregarAlCarrito(this)">🛒 Agregar al carrito</button>
-</div>
+  <button class="boton-secundario" onclick="agregarAlCarrito(this)">
+  🛒 Agregar al carrito
+</button>
 
 
 
@@ -1639,6 +1700,18 @@ const mensajeStock = document.getElementById("mensaje-stock");
 const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
 
+const btnMinimizar = document.getElementById("minimizar-carrito");
+const contenedorCarrito = document.getElementById("carrito");
+
+btnMinimizar.addEventListener("click", () => {
+  contenedorCarrito.classList.toggle("minimizado");
+  
+  if(contenedorCarrito.classList.contains("minimizado")){
+    btnMinimizar.innerText = "🛒 Carrito 🔼 Mostrar";
+  } else {
+    btnMinimizar.innerText = "🛒 Carrito 🔽 Minimizar";
+  }
+});
  
 let carrito = [];
 
