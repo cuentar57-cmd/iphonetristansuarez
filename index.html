@@ -620,12 +620,12 @@ h2 {
 </div>
 
 <div id="carrito">
-  <button id="minimizar-carrito">🛒 Carrito 🔽</button>
+  <button id="minimizar-carrito" onclick="toggleCarrito()">🛒 Minimizar</button>
+  <h4>📦 Datos para el pedido</h4>
 
   <ul id="lista-carrito"></ul>
   <div id="total-carrito"><strong>Total:</strong> $0</div>
 
-  <h4>📦 Datos para el pedido</h4>
   <input type="text" id="nombre" placeholder="Nombre completo">
   <input type="text" id="dni" placeholder="DNI">
   <input type="text" id="direccion" placeholder="Dirección">
@@ -639,7 +639,7 @@ h2 {
   </select>
 
   <button class="boton" onclick="finalizarPedido()">Finalizar pedido por WhatsApp</button>
-  <button class="boton-secundario" onclick="vaciarCarrito()">🗑 Vaciar carrito</button>
+  <button class="boton-secundario" onclick="vaciarCarrito()">Vaciar carrito</button>
 </div>
 
 
@@ -1700,18 +1700,17 @@ const mensajeStock = document.getElementById("mensaje-stock");
 const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
 
-const btnMinimizar = document.getElementById("minimizar-carrito");
-const contenedorCarrito = document.getElementById("carrito");
+function toggleCarrito() {
+  const carritoEl = document.getElementById("carrito");
+  carritoEl.classList.toggle("minimizado");
 
-btnMinimizar.addEventListener("click", () => {
-  contenedorCarrito.classList.toggle("minimizado");
-  
-  if(contenedorCarrito.classList.contains("minimizado")){
-    btnMinimizar.innerText = "🛒 Carrito 🔼 Mostrar";
+  const boton = document.getElementById("minimizar-carrito");
+  if(carritoEl.classList.contains("minimizado")){
+    boton.textContent = "🛒 Maximizar";
   } else {
-    btnMinimizar.innerText = "🛒 Carrito 🔽 Minimizar";
+    boton.textContent = "🛒 Minimizar";
   }
-});
+}
  
 let carrito = [];
 
