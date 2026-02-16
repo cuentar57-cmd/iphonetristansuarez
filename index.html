@@ -1644,8 +1644,11 @@ let carrito = [];
 
 function agregarAlCarrito(boton){
   const card = boton.closest(".card");
-  const nombreEl = card.querySelector(".producto-nombre");
-  const precioEl = card.querySelector(".producto-precio");
+
+  // Nombre genérico
+  const nombreEl = card.querySelector(".producto-nombre") || card.querySelector(".titulo");
+  // Precio genérico (ARS o USD)
+  const precioEl = card.querySelector(".producto-precio") || card.querySelector(".precio-ars") || card.querySelector(".precio-usd");
 
   if(!nombreEl || !precioEl){
     alert("⚠️ Este producto no está listo para el carrito");
@@ -1653,8 +1656,15 @@ function agregarAlCarrito(boton){
   }
 
   const nombre = nombreEl.innerText;
-  const precioTexto = precioEl.innerText.replace(/\D/g, "");
-  const precio = parseInt(precioTexto);
+
+  // Detectar si el precio está en USD
+  let precioTexto = precioEl.innerText.replace(/[\D]/g, "");
+  let precio = parseInt(precioTexto);
+
+  if(precioEl.classList.contains("precio-usd")){
+    const tasa = 450; // Ejemplo: USD a ARS, cambialo según tu necesidad
+    precio = precio * tasa;
+  }
 
   carrito.push({ nombre, precio });
 
@@ -1673,7 +1683,7 @@ function actualizarCarrito(){
   carrito.forEach(p => {
     total += p.precio;
     const li = document.createElement("li");
-    li.textContent = `${p.nombre} - $${p.precio.toLocaleString()}`;
+    li.textContent = `🛒 ${p.nombre} - $${p.precio.toLocaleString()}`;
     lista.appendChild(li);
   });
 
@@ -1690,7 +1700,12 @@ function vaciarCarrito(){
 }
 
 function abrirWhatsApp(boton){
-  let mensaje = "Hola! Quiero comprar:%0A";
+  if(carrito.length === 0){
+    alert("⚠️ El carrito está vacío");
+    return;
+  }
+
+  let mensaje = "🛒 *NUEVO PEDIDO*%0A%0A";
 
   carrito.forEach((p, i) => {
     mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
@@ -1704,7 +1719,7 @@ function abrirWhatsApp(boton){
 
 function finalizarPedido(){
   if(carrito.length === 0){
-    alert("El carrito está vacío");
+    alert("⚠️ El carrito está vacío");
     return;
   }
 
@@ -1715,7 +1730,7 @@ function finalizarPedido(){
   const envio = document.getElementById("envio").value;
 
   if(!nombre || !dni || !direccion || !ciudad || !envio){
-    alert("Completá todos los datos para continuar");
+    alert("⚠️ Completá todos los datos para continuar");
     return;
   }
 
@@ -1739,7 +1754,6 @@ function finalizarPedido(){
     "_blank"
   );
 }
-
 function abrirGaleria(tipo){
   const modal = document.getElementById("modalGaleria");
   const contenedor = document.getElementById("contenidoGaleria");
