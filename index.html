@@ -588,84 +588,57 @@ h2 {
   color: #000;
 }
 
-/* Botón flotante pequeño abajo a la derecha */
+/* Botón flotante del carrito */
 #boton-carrito {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   background-color: #ffcc00;
   border: none;
-  font-size: 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
+}
+
+#contador-carrito {
+  background: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+
+#contador-carrito.mostrar {
+  display: inline-block;
 }
 
 /* Ventana del carrito */
 #carrito {
   position: fixed;
-  bottom: 80px; /* justo arriba del botón */
+  bottom: 80px;
   right: 20px;
   width: 300px;
   max-height: 400px;
-  background: #fff;
+  background: white;
   border: 1px solid #ccc;
   padding: 10px;
   overflow-y: auto;
-  display: none; /* cerrado por defecto */
+  display: none;
   z-index: 999;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  border-radius: 8px;
 }
 
-/* Estado abierto */
 #carrito.abierto {
   display: block;
-}
-
-/* Contador dentro del botón */
-#contador-carrito {
-  font-size: 14px;
-  margin-left: 2px;
-  font-weight: bold;
-}
-
-/* Botón flotante pequeño abajo a la derecha */
-#boton-carrito {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #ffcc00;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Contador dentro del botón */
-#contador-carrito {
-  font-size: 14px;
-  margin-left: 2px;
-  font-weight: bold;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  text-align: center;
-  line-height: 18px;
-  display: inline-block;
 }
 
 </style>
@@ -682,12 +655,11 @@ h2 {
 
 <!-- Botón flotante del carrito -->
 <button id="boton-carrito" onclick="abrirCerrarCarrito()">
-  🛒 <span id="contador-carrito" style="display:none;">0</span>
+  🛒 <span id="contador-carrito" class="contador"></span>
 </button>
 
-<!-- Ventana del carrito, cerrada por defecto -->
-<div id="carrito" class="minimizado" style="display:none;">
-  <button id="minimizar-carrito" onclick="toggleCarrito()">▲</button>
+<!-- Ventana del carrito -->
+<div id="carrito" class="cerrado">
   <h4>📦 Carrito de compras</h4>
   <ul id="lista-carrito"></ul>
   <div id="total-carrito"><strong>Total:</strong> $0</div>
@@ -1826,7 +1798,8 @@ function actualizarCarrito(){
     contador.classList.remove("mostrar");
   }
 }
-// Abrir/cerrar ventana del carrito
+
+// Abrir/cerrar ventana del carrito flotante
 function abrirCerrarCarrito(){
   const carritoDiv = document.getElementById("carrito");
   carritoDiv.classList.toggle("abierto");
@@ -1837,6 +1810,7 @@ function vaciarCarrito(){
   carrito = [];
   actualizarCarrito();
 }
+
 function abrirGaleria(tipo){
   const modal = document.getElementById("modalGaleria");
   const contenedor = document.getElementById("contenidoGaleria");
