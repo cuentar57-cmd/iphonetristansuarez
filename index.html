@@ -610,6 +610,27 @@ h2 {
   text-align: center;
   padding: 5px 0;
 }
+#boton-carrito {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;    /* tamaño un poco más grande */
+  height: 45px;   /* igual */
+  border-radius: 50%;
+  background-color: #ffcc00;
+  border: none;
+  font-size: 20px;  /* emoji y número más visibles */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#contador-carrito {
+  font-size: 14px;  /* más fácil de leer */
+  margin-left: 2px;
+  font-weight: bold;
+}
 
 /* Cuando está minimizado: todo adentro oculto */
 #carrito.minimizado ul,
@@ -635,14 +656,17 @@ h2 {
   </a>
 </div>
 
+<!-- Botón de carrito pequeño -->
+<button id="boton-carrito" onclick="toggleCarrito()">🛒<span id="contador-carrito">0</span></button>
+
+<!-- Ventana del carrito -->
 <div id="carrito" class="minimizado">
-  <button id="minimizar-carrito" onclick="toggleCarrito()">🛒 0</button>
-
-  <h4>📦 Datos para el pedido</h4>
-
+  <button id="minimizar-carrito" onclick="toggleCarrito()">▲</button>
+  <h4>📦 Carrito de compras</h4>
   <ul id="lista-carrito"></ul>
   <div id="total-carrito"><strong>Total:</strong> $0</div>
 
+  <h4>📦 Datos para el pedido</h4>
   <input type="text" id="nombre" placeholder="Nombre completo">
   <input type="text" id="dni" placeholder="DNI">
   <input type="text" id="direccion" placeholder="Dirección">
@@ -658,7 +682,6 @@ h2 {
   <button class="boton" onclick="finalizarPedido()">Finalizar pedido por WhatsApp</button>
   <button class="boton-secundario" onclick="vaciarCarrito()">Vaciar carrito</button>
 </div>
-
 
 
 <header>
@@ -1746,7 +1769,6 @@ function agregarAlCarrito(boton){
   const precio = parseInt(precioTexto);
 
   carrito.push({ nombre, precio });
-
   actualizarCarrito();
 }
 
@@ -1754,10 +1776,9 @@ function actualizarCarrito(){
   const lista = document.getElementById("lista-carrito");
   const totalEl = document.getElementById("total-carrito");
   const contenedor = document.getElementById("carrito");
-  const boton = document.getElementById("minimizar-carrito");
+  const contador = document.getElementById("contador-carrito");
 
   lista.innerHTML = "";
-
   let total = 0;
 
   carrito.forEach(p => {
@@ -1768,27 +1789,19 @@ function actualizarCarrito(){
   });
 
   totalEl.innerHTML = `<strong>Total:</strong> $${total.toLocaleString()}`;
+  contador.innerText = carrito.length;
 
-  // Mostrar carrito solo con el botón
-  contenedor.classList.add("minimizado");
-
-  // Actualizar contador en el botón
-  boton.textContent = `🛒 ${carrito.length}`;
+  if(carrito.length > 0){
+    contenedor.classList.remove("minimizado"); // Se muestra al agregar
+  }
 }
 
-// Minimizar / maximizar
-function toggleCarrito() {
-  const carritoEl = document.getElementById("carrito");
-  carritoEl.classList.toggle("minimizado");
-}
-
-// Vaciar carrito
 function vaciarCarrito(){
   carrito = [];
-  actualizarCarrito();
+  document.getElementById("carrito").classList.add("minimizado");
+  document.getElementById("contador-carrito").innerText = 0;
 }
 
-// Finalizar pedido
 function finalizarPedido(){
   if(carrito.length === 0){
     alert("El carrito está vacío");
@@ -1827,42 +1840,9 @@ function finalizarPedido(){
   );
 }
 
-function finalizarPedido(){
-  if(carrito.length === 0){
-    alert("⚠️ El carrito está vacío");
-    return;
-  }
-
-  const nombre = document.getElementById("nombre").value.trim();
-  const dni = document.getElementById("dni").value.trim();
-  const direccion = document.getElementById("direccion").value.trim();
-  const ciudad = document.getElementById("ciudad").value.trim();
-  const envio = document.getElementById("envio").value;
-
-  if(!nombre || !dni || !direccion || !ciudad || !envio){
-    alert("⚠️ Completá todos los datos para continuar");
-    return;
-  }
-
-  let mensaje = "🛒 *NUEVO PEDIDO*%0A%0A";
-
-  carrito.forEach((p, i) => {
-    mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
-  });
-
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
-
-  mensaje += `%0A*Total:* $${total.toLocaleString()}%0A%0A`;
-  mensaje += `👤 *Cliente:* ${nombre}%0A`;
-  mensaje += `🆔 *DNI:* ${dni}%0A`;
-  mensaje += `📍 *Dirección:* ${direccion}%0A`;
-  mensaje += `🏙 *Ciudad:* ${ciudad}%0A`;
-  mensaje += `🚚 *Envío:* ${envio}`;
-
-  window.open(
-    "https://wa.me/5491168330009?text=" + mensaje,
-    "_blank"
-  );
+function toggleCarrito(){
+  const contenedor = document.getElementById("carrito");
+  contenedor.classList.toggle("minimizado");
 }
 function abrirGaleria(tipo){
   const modal = document.getElementById("modalGaleria");
