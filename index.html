@@ -600,14 +600,18 @@ h2 {
   z-index: 9999;
 }
 
+/* Botón flotante */
 #minimizar-carrito {
-  background-color: transparent;
-  border: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
   font-size: 18px;
   cursor: pointer;
-  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
 }
 
+/* Cuando está minimizado: todo adentro oculto */
 #carrito.minimizado ul,
 #carrito.minimizado #total-carrito,
 #carrito.minimizado h4,
@@ -631,8 +635,8 @@ h2 {
   </a>
 </div>
 
-<div id="carrito">
-  <button id="minimizar-carrito" onclick="toggleCarrito()">🛒 Minimizar</button>
+<div id="carrito" class="minimizado">
+  <button id="minimizar-carrito" onclick="toggleCarrito()">🛒 0</button>
 
   <h4>📦 Datos para el pedido</h4>
 
@@ -1729,11 +1733,8 @@ let carrito = [];
 
 function agregarAlCarrito(boton){
   const card = boton.closest(".card");
-
-  // Nombre genérico
-  const nombreEl = card.querySelector(".producto-nombre") || card.querySelector(".titulo");
-  // Precio genérico (ARS o USD)
-  const precioEl = card.querySelector(".producto-precio") || card.querySelector(".precio-ars") || card.querySelector(".precio-usd");
+  const nombreEl = card.querySelector(".producto-nombre");
+  const precioEl = card.querySelector(".producto-precio");
 
   if(!nombreEl || !precioEl){
     alert("⚠️ Este producto no está listo para el carrito");
@@ -1741,15 +1742,8 @@ function agregarAlCarrito(boton){
   }
 
   const nombre = nombreEl.innerText;
-
-  // Detectar si el precio está en USD
-  let precioTexto = precioEl.innerText.replace(/[\D]/g, "");
-  let precio = parseInt(precioTexto);
-
-  if(precioEl.classList.contains("precio-usd")){
-    const tasa = 450; // Ejemplo: USD a ARS, cambialo según tu necesidad
-    precio = precio * tasa;
-  }
+  const precioTexto = precioEl.innerText.replace(/\D/g, "");
+  const precio = parseInt(precioTexto);
 
   carrito.push({ nombre, precio });
 
@@ -1760,6 +1754,7 @@ function actualizarCarrito(){
   const lista = document.getElementById("lista-carrito");
   const totalEl = document.getElementById("total-carrito");
   const contenedor = document.getElementById("carrito");
+  const boton = document.getElementById("minimizar-carrito");
 
   lista.innerHTML = "";
 
@@ -1768,25 +1763,46 @@ function actualizarCarrito(){
   carrito.forEach(p => {
     total += p.precio;
     const li = document.createElement("li");
-    li.textContent = `🛒 ${p.nombre} - $${p.precio.toLocaleString()}`;
+    li.textContent = `${p.nombre} - $${p.precio.toLocaleString()}`;
     lista.appendChild(li);
   });
 
   totalEl.innerHTML = `<strong>Total:</strong> $${total.toLocaleString()}`;
 
-  if(carrito.length > 0){
-    contenedor.classList.add("mostrar");
-  }
+  // Mostrar carrito solo con el botón
+  contenedor.classList.add("minimizado");
+
+  // Actualizar contador en el botón
+  boton.textContent = `🛒 ${carrito.length}`;
 }
 
+// Minimizar / maximizar
+function toggleCarrito() {
+  const carritoEl = document.getElementById("carrito");
+  carritoEl.classList.toggle("minimizado");
+}
+
+// Vaciar carrito
 function vaciarCarrito(){
   carrito = [];
-  document.getElementById("carrito").classList.remove("mostrar");
+  actualizarCarrito();
 }
 
-function abrirWhatsApp(boton){
+// Finalizar pedido
+function finalizarPedido(){
   if(carrito.length === 0){
-    alert("⚠️ El carrito está vacío");
+    alert("El carrito está vacío");
+    return;
+  }
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const dni = document.getElementById("dni").value.trim();
+  const direccion = document.getElementById("direccion").value.trim();
+  const ciudad = document.getElementById("ciudad").value.trim();
+  const envio = document.getElementById("envio").value;
+
+  if(!nombre || !dni || !direccion || !ciudad || !envio){
+    alert("Completá todos los datos para continuar");
     return;
   }
 
@@ -1795,6 +1811,15 @@ function abrirWhatsApp(boton){
   carrito.forEach((p, i) => {
     mensaje += `${i+1}. ${p.nombre} - $${p.precio.toLocaleString()}%0A`;
   });
+
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+
+  mensaje += `%0A*Total:* $${total.toLocaleString()}%0A%0A`;
+  mensaje += `👤 *Cliente:* ${nombre}%0A`;
+  mensaje += `🆔 *DNI:* ${dni}%0A`;
+  mensaje += `📍 *Dirección:* ${direccion}%0A`;
+  mensaje += `🏙 *Ciudad:* ${ciudad}%0A`;
+  mensaje += `🚚 *Envío:* ${envio}`;
 
   window.open(
     "https://wa.me/5491168330009?text=" + mensaje,
